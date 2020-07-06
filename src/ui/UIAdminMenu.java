@@ -1,6 +1,7 @@
 package ui;
 
 import model.Doctor;
+import model.Patient;
 
 import java.text.ParseException;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class UIAdminMenu {
                     break;
                 case 2:
                     //Add Pacient
+                    addDatePatient();
                     break;
                 case 0:
                     UIMenu.showMenu();
@@ -51,6 +53,30 @@ public class UIAdminMenu {
             response = Integer.valueOf(sc.nextLine());
         }while (response == 2);
         UIMenu.adminLogged.addDoctor(name, email);
+        for (Doctor d: UIMenu.adminLogged.getAvailableDoctors()) {
+            System.out.println(d.getName());
+        }
+    }
+
+    public static void addDatePatient() {
+        Scanner sc = new Scanner(System.in);
+        int response = 0;
+        String name = "";
+        String email = "";
+
+        do {
+            System.out.println("Insert patient's name");
+            name = sc.nextLine();
+            System.out.println("Insert patient's email");
+            email = sc.nextLine();
+            System.out.println("The patient is: " + name + " email: " + email);
+            System.out.println("1. Correct 2. Change");
+            response = Integer.valueOf(response);
+        }while (response == 2);
+        UIMenu.adminLogged.addPatient(name, email);
+        for (Patient p: UIMenu.adminLogged.getAvailablePatients()) {
+            System.out.println(p.getName());
+        }
     }
 
 

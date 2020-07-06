@@ -1,10 +1,5 @@
-import model.Doctor;
-import model.Patient;
-import model.User;
 
 import java.text.ParseException;
-import java.util.Date;
-
 import static ui.UIMenu.*;
 
 public class Main {
