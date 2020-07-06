@@ -1,5 +1,6 @@
 package ui;
 
+import model.Admin;
 import model.Doctor;
 import model.Patient;
 
@@ -13,6 +14,7 @@ public class UIMenu {
     public static final String[] MONTHS = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre"};
     public static Doctor doctorLogged;
     public static Patient patientLogged;
+    public static Admin adminLogged;
 
     public static void showMenu() throws ParseException {
         System.out.println("Welcome to My Appointments");
@@ -27,7 +29,6 @@ public class UIMenu {
 
             Scanner sc = new Scanner(System.in);
             response = Integer.valueOf(sc.nextLine());
-            authUser(1);
 
             switch (response){
                 case 1:
@@ -40,6 +41,7 @@ public class UIMenu {
                     break;
                 case 3:
                     System.out.println("Administrator");
+                    authUser(3);
                     break;
                 case 0:
                     System.out.println("Thank you for you visit");
@@ -65,11 +67,15 @@ public class UIMenu {
         pacientes.add(new Patient("Francisco Garcia", "frank@paciente.com"));
         pacientes.add(new Patient("Diana Salazar", "diana@paciente.com"));
 
+        ArrayList<Admin> admins = new ArrayList<>();
+        admins.add(new Admin("Francisco Garcia", "paco@admin.com"));
+
         boolean emailCorrect = false;
         do{
             System.out.println("Insert your email: a@gmail.com");
             Scanner sc = new Scanner(System.in);
             String email = sc.nextLine();
+
             if(userType == 1){
                 for(Doctor d: doctors){
                     if(d.getEmail().equals(email)){
@@ -89,10 +95,20 @@ public class UIMenu {
                         //Obtener el usuario Logeado
                         patientLogged = p;
                         //Show menu Patient
-
                     }
                 }
+            }
 
+            if (userType == 3) {
+                for (Admin a: admins) {
+                    if (a.getEmail().equals(email)) {
+                        emailCorrect = true;
+                        //Obtenemos el usuario Loggeado
+                        adminLogged = a;
+                        //Show admin Menu
+                        UIAdminMenu.showAdminMenu();
+                    }
+                }
             }
         }while(!emailCorrect);
     }

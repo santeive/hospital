@@ -1,11 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Patient extends User{
     //Atributos
     private String birthday;
     private double weight;
     private double height;
     private String blood;
+
+    ArrayList<Patient> availablePatients = new ArrayList<>();
 
     public Patient(String name, String email) {
         //Cómo los atributos name e email ya no forman parte de la clase Patient, se deben pasar a
@@ -50,5 +54,9 @@ public class Patient extends User{
 
     public void setBlood(String blood) {
         this.blood = blood;
+    }
+
+    public void addPatient(String name, String email) {
+        availablePatients.add(new Patient(name, email));
     }
 }
