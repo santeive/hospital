@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 
-    public static ArrayList<Doctor> availableDoctors = new ArrayList<>();
-    public static ArrayList<Patient> availablePatients = new ArrayList<>();
+    private ArrayList<Doctor> availableDoctors = new ArrayList<>();
+    private ArrayList<Patient> availablePatients = new ArrayList<>();
 
     public Admin(String name, String email) {
         super(name, email);

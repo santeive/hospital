@@ -30,7 +30,7 @@ public class UIAdminMenu {
                     UIMenu.showMenu();
                     break;
                 default:
-                    System.out.println("Select a correct answer");
+                    System.out.println("Select a correct option");
                     break;
             }
 
@@ -38,7 +38,6 @@ public class UIAdminMenu {
     }
 
     public static void addDateDoctor() {
-
         Scanner sc = new Scanner(System.in);
         int response = 0;
         String name = "";
@@ -71,7 +70,7 @@ public class UIAdminMenu {
             email = sc.nextLine();
             System.out.println("The patient is: " + name + " email: " + email);
             System.out.println("1. Correct 2. Change");
-            response = Integer.valueOf(response);
+            response = Integer.valueOf(sc.nextLine());
         }while (response == 2);
         UIMenu.adminLogged.addPatient(name, email);
         for (Patient p: UIMenu.adminLogged.getAvailablePatients()) {

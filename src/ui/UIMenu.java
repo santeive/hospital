@@ -24,8 +24,8 @@ public class UIMenu {
         do {
             System.out.println("1. Doctor");
             System.out.println("2. Patient");
-            System.out.println("3. Administrador");
-            System.out.println("0. Salir");
+            System.out.println("3. Administrator");
+            System.out.println("0. Logout");
 
             Scanner sc = new Scanner(System.in);
             response = Integer.valueOf(sc.nextLine());
@@ -57,16 +57,6 @@ public class UIMenu {
         //userType = 2 Paciente
         //userType = 3 Administrador
 
-        ArrayList<Doctor> doctors = new ArrayList<>();
-        doctors.add(new Doctor("Alejandro Matrinez", "ale@doctor.com"));
-        doctors.add(new Doctor("Pamela Matrinez", "pamela@doctor.com"));
-        doctors.add(new Doctor("Andrea Matrinez", "andrea@doctor.com"));
-
-        ArrayList<Patient> pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Roberto Snachez", "rob@paciente.com"));
-        pacientes.add(new Patient("Francisco Garcia", "frank@paciente.com"));
-        pacientes.add(new Patient("Diana Salazar", "diana@paciente.com"));
-
         ArrayList<Admin> admins = new ArrayList<>();
         admins.add(new Admin("Francisco Garcia", "paco@admin.com"));
 
@@ -77,7 +67,7 @@ public class UIMenu {
             String email = sc.nextLine();
 
             if(userType == 1){
-                for(Doctor d: doctors){
+                for(Doctor d: adminLogged.getAvailableDoctors()){
                     if(d.getEmail().equals(email)){
                         emailCorrect = true;
                         //Obtener el usuario logeado
@@ -89,7 +79,7 @@ public class UIMenu {
             }
 
             if(userType == 2) {
-                for (Patient p: pacientes) {
+                for (Patient p: adminLogged.getAvailablePatients()) {
                     if(p.getName().equals(email)) {
                         emailCorrect = true;
                         //Obtener el usuario Logeado
