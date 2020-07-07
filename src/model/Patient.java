@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Patient extends User{
     //Atributos
@@ -9,12 +10,40 @@ public class Patient extends User{
     private double height;
     private String blood;
 
-    ArrayList<Patient> availablePatients = new ArrayList<>();
+    private ArrayList<AppointmentDoctor> appointmentDoctors = new ArrayList<>();
+    private ArrayList<AppointmentNurse> appointmentNurses = new ArrayList<>();
+    private ArrayList<Patient> availablePatients = new ArrayList<>();
 
     public Patient(String name, String email) {
         //Cómo los atributos name e email ya no forman parte de la clase Patient, se deben pasar a
         // super por que pertenecen a la clase padre.
         super(name, email);
+    }
+
+    public ArrayList<AppointmentDoctor> getAppointmentDoctors() {
+        return appointmentDoctors;
+    }
+
+    public void addAppointmentDoctors(Doctor doctor, Date date, String time) {
+        AppointmentDoctor appointmentDoctor = new AppointmentDoctor(this, doctor);
+        appointmentDoctor.schedule(date, time);
+        appointmentDoctors.add(appointmentDoctor);
+    }
+
+    public ArrayList<AppointmentNurse> getAppointmentNurses() {
+        return appointmentNurses;
+    }
+
+    public void setAppointmentNurses(ArrayList<AppointmentNurse> appointmentNurses) {
+        this.appointmentNurses = appointmentNurses;
+    }
+
+    public ArrayList<Patient> getAvailablePatients() {
+        return availablePatients;
+    }
+
+    public void setAvailablePatients(ArrayList<Patient> availablePatients) {
+        this.availablePatients = availablePatients;
     }
 
     //La implementación de los metodos abrstractos es obligatoria
